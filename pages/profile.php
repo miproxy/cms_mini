@@ -5,22 +5,26 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-4 col-md-4 col-lg-4">
-      <div class="hovereffect">
-        <?php
-          if (file_exists($_SERVER['DOCUMENT_ROOT'].'/cms_mini/assets/img/profile.jpg')) {
-            echo '<img src="/cms_mini/assets/img/profile.jpg" class="img-thumbnail img-responsive">';
-          } else {
-            echo '<img src="/cms_mini/assets/img/default.png" class="img-thumbnail img-responsive">';
-          }
-        ?>
-        <div class="overlay">
-            <p data-toggle="modal" data-target="#exampleModal">Change profile picture</p>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="hovereffect">
+          <?php
+            if (file_exists($_SERVER['DOCUMENT_ROOT'].'/cms_mini/assets/img/profile.jpg')) {
+              echo '<img src="/cms_mini/assets/img/profile.jpg" class="img-thumbnail img-responsive" width="150" height="150">';
+            } else {
+              echo '<img src="/cms_mini/assets/img/default.png" class="img-thumbnail img-responsive" width="150" height="150">';
+            }
+          ?>
+          <div class="overlay">
+              <p data-toggle="modal" data-target="#exampleModal">Change picture</p>
+          </div>
         </div>
       </div>
-      <p id="username_info" class="text-center py-2">@username</p>
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <p id="username_info" class="text-center py-2">@username</p>
+      </div>
     </div>
-    <div class="col-sm-8 col-md-8 col-lg-8">
+    <div class="col-sm-9 col-md-9 col-lg-9">
       <h3 class="pb-4"><b>My profile</b></h3>
       <form>
         <div class="form-group row">

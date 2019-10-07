@@ -1,6 +1,9 @@
 <?php
+
+include($_SERVER['DOCUMENT_ROOT'].'/cms_mini/libraries/SimpleImage.php');
+
 $target_dir = $_SERVER['DOCUMENT_ROOT'].'/cms_mini/assets/img/';
-$target_file = $target_dir . 'profile.jpg';
+$target_file = $target_dir . $_POST["username"] . '.jpg';
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
@@ -31,6 +34,11 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        // Resize image by using external library (SimpleImage)
+        $image = new SimpleImage();
+        $image->load($target_file);
+        $image->resize(150, 150);
+        $image->save($target_file);
         // Redirect to profile page
         header("location: /cms_mini/pages/profile.php");
         exit();

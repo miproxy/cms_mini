@@ -56,7 +56,8 @@
         </div>
       </div>
       <hr class="mt-5">
-      <button id="update_profile" type="submit" class="btn btn-primary float-right">Update Profile</button>
+      <button id="update_profile" type="submit" class="btn btn-primary float-right mx-3">Update Profile</button>
+      <button id="reset_password" type="button" class="btn btn-primary float-right">Reset Your Password</button>
     </div>
   </div>
 </div>

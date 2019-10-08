@@ -38,8 +38,12 @@ $(document).on('click', '#update_profile', function() {
       'private': private,
     },
     success: function(response){
-      console.log(response);
-      // alert("Data successifully updated!");
+      alert(response);
     }
   });
+});
+
+// Redirect to reset password page
+$(document).on('click', '#reset_password', function() {
+  window.location.href = "/cms_mini/pages/reset_password.php";
 });

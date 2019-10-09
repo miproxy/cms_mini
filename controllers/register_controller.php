@@ -1,6 +1,8 @@
 <?php
 // Include config file
 require_once $_SERVER['DOCUMENT_ROOT'].'/cms_mini/config/config.php';
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $email = $first_name = $last_name = "";
@@ -86,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err) && empty($first_name_err) && empty($last_name_err)){
 
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, first_name, last_name, email) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (username, password, first_name, last_name, email, active) VALUES (?, ?, ?, ?, ?, 1)";
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sssss", $param_username, $param_password, $param_first_name, $param_last_name, $param_email);
@@ -100,6 +102,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
+              // Update user role (admin/general)
+                $sql = "INSERT INTO users_groups (user_id, group_id) VALUES ($link->insert_id, 2)";
+
+                if ($link->query($sql) === TRUE) {
+                    echo "New record created successfully";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $link->error;
+                }
+
                 // Redirect to login page
                 header("location: login.php");
             } else{

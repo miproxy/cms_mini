@@ -11,6 +11,15 @@
       <li class="nav-item active">
         <a class="nav-link" href="/cms_mini">Home <span class="sr-only">(current)</span></a>
       </li>
+      <?php
+        if ($is_admin) {
+          ?>
+          <li class="nav-item active">
+            <a class="nav-link" href="/cms_mini">Members <span class="sr-only">(current)</span></a>
+          </li>
+          <?php
+        }
+       ?>
     </ul>
     <ul class="navbar-nav ml-auto">
       <?php

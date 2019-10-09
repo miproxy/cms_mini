@@ -1,6 +1,8 @@
 <?php
 // Include config file
 require_once $_SERVER['DOCUMENT_ROOT'].'/cms_mini/config/config.php';
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 $sql = "UPDATE users
         SET first_name  ='".$_POST["first_name"]."',

@@ -8,6 +8,7 @@
 <table id="public-users-table" class="display" style="width:100%">
   <thead>
     <tr>
+      <td></td>
       <td>First Name</td>
       <td>Last Name</td>
       <td>Username</td>
@@ -16,8 +17,15 @@
   </thead>
   <tbody>
     <?php
-      foreach ($users as $user) {
-        echo "<tr><td>" . $user['first_name'] . "</td><td>" . $user['last_name'] . "</td><td>" . $user['username'] . "</td><td>" . $user['email'] . "</td></tr>";
+      if (isset($users)) {
+        foreach ($users as $user) {
+          if (file_exists($_SERVER['DOCUMENT_ROOT'].'/cms_mini/assets/img/'.$user['username'].'.jpg')) {
+            $img = '<img src="/cms_mini/assets/img/'.$user['username'].'.jpg" class="img-table img-responsive">';
+          } else {
+            $img = '<img src="/cms_mini/assets/img/default.png" class="img-table img-responsive">';
+          }
+          echo "<tr><td width=\"1%\">" . $img . "</td><td>" . $user['first_name'] . "</td><td>" . $user['last_name'] . "</td><td>" . $user['username'] . "</td><td>" . $user['email'] . "</td></tr>";
+        }
       }
      ?>
   </tbody>

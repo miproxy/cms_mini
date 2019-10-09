@@ -6,17 +6,21 @@ server with default setting (user 'root' with no password) */
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', 'lemo');
+define('DB_NAME', 'demo');
 
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Check connection and install databases
 if($link === false){
-  var_dump($link);
-  exit();
   // new installation
   $install = new Install();
-  $install->createDatabase(DB_NAME);
+  $install->initDatabase(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+  // Redirect to home page
+  header("location: /cms_mini/index.php");
+  exit();
 }
+
+$link->close();
 ?>

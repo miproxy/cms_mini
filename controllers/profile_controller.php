@@ -1,6 +1,8 @@
 <?php
 // Include config file
 require_once $_SERVER['DOCUMENT_ROOT'].'/cms_mini/config/config.php';
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // If user is loggedin
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {

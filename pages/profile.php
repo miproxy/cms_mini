@@ -12,9 +12,9 @@
         <div class="hovereffect">
           <?php
             if (file_exists($_SERVER['DOCUMENT_ROOT'].'/cms_mini/assets/img/'.$user_info['username'].'.jpg')) {
-              echo '<img src="/cms_mini/assets/img/'.$user_info['username'].'.jpg" class="img-thumbnail img-responsive" width="150" height="150">';
+              echo '<img src="/cms_mini/assets/img/'.$user_info['username'].'.jpg" class="img-thumbnail img-responsive" width="150px" height="150px">';
             } else {
-              echo '<img src="/cms_mini/assets/img/default.png" class="img-thumbnail img-responsive" width="150" height="150">';
+              echo '<img src="/cms_mini/assets/img/default.png" class="img-thumbnail img-responsive" width="150px" height="150px">';
             }
           ?>
           <div class="overlay">

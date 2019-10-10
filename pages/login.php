@@ -22,6 +22,9 @@
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Login">
         </div>
+        <div class="form-group <?php echo (!empty($active_err)) ? 'has-error' : ''; ?>">
+            <span class="help-block"><?php echo $active_err; ?></span>
+        </div>
         <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
     </form>
 </div>

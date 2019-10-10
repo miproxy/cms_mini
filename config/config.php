@@ -18,7 +18,7 @@ if($link === false){
   $install->initDatabase(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
   // Redirect to home page
-  header("location: /cms_mini/index.php");
+  header("location: /cms_mini");
   exit();
 }
 

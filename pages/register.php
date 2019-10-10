@@ -40,8 +40,7 @@
             <span class="help-block"><?php echo $last_name_err; ?></span>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Submit">
-            <input type="reset" class="btn btn-default" value="Reset">
+            <input type="submit" class="btn btn-primary" value="Register Now">
         </div>
         <p>Already have an account? <a href="/cms_mini/pages/login.php">Login here</a>.</p>
     </form>

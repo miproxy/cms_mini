@@ -19,8 +19,10 @@ class Install {
       }
       // Break connection
       $link->close();
-
+      // Create tables
       $this->createTables($servername, $username, $password, $db_name);
+      // Init Demo data
+      $this->initDemoData($servername, $username, $password, $db_name);
   }
 
   // function to Create tables
@@ -83,8 +85,62 @@ class Install {
     $link->close();
   }
 
-  function initDemoData() {
+  // Initialization of DEMO data
+  function initDemoData($servername, $username, $password, $db_name) {
+    // Create connection with DB selected
+    $link = new mysqli($servername, $username, $password, $db_name);
+    // Check connection
+    if ($link->connect_error) {
+        die("Connection failed: " . $link->connect_error);
+    }
+    // Aadmin password
+    $admin_password = password_hash("admin123", PASSWORD_DEFAULT);
+    // Password for all demo users is 123456
+    $password = password_hash("123456", PASSWORD_DEFAULT);
+    // Set admin account
+    $sql = "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('1', 'admin', '$admin_password', 'Admin', 'istrator', 'Glavni Korisnik', 'admin@demo.com', 1, 1);";
+    // Set public users
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('2', 'usermarko', '$password', 'Marko', 'Petrovic', 'Korisnik Marko', 'marko@demo.com', 0, 1);";
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('3', 'usernikola', '$password', 'Nikola', 'Novakovic', 'Korisnik Nikola', 'nikola@demo.com', 0, 1);";
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('4', 'usermilan', '$password', 'Milan', 'Jovanovic', 'Korisnik Milan', 'milan@demo.com', 0, 1);";
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('5', 'userjovan', '$password', 'Jovan', 'Miletic', 'Korisnik Jovan', 'jovan@demo.com', 0, 1);";
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('6', 'userdusan', '$password', 'Dusan', 'Tosic', 'Korisnik Dusan', 'dusan@demo.com', 0, 1);";
+    // Set private users
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('7', 'userzoran', '$password', 'Zoran', 'Pavlovic', 'Korisnik Zoran', 'zoran@demo.com', 1, 1);";
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('8', 'userveljko', '$password', 'Veljko', 'Slavkovic', 'Korisnik Veljko', 'veljko@demo.com', 1, 1);";
+    $sql .= "INSERT INTO users (id, username, password, first_name, last_name, description, email, is_private, active)
+            VALUES ('9', 'usergoran', '$password', 'Goran', 'Radenkovic', 'Korisnik Goran', 'goran@demo.com', 1, 1);";
+    // Set user groups
+    $sql .= "INSERT INTO groups (id, name, description)
+            VALUES ('1', 'admin', 'Administrator of page');";
+    $sql .= "INSERT INTO groups (id, name, description)
+            VALUES ('2', 'user', 'General user');";
+    // Set user roles
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('1', '1');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('2', '2');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('3', '2');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('4', '2');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('5', '2');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('6', '2');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('7', '2');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('8', '2');";
+    $sql .= "INSERT INTO users_groups (user_id, group_id) VALUES ('9', '2')";
 
+    if ($link->multi_query($sql) === TRUE) {
+        echo "New records created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $link->error;
+    }
+
+    $link->close();
   }
 }
 ?>

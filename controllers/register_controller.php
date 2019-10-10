@@ -111,6 +111,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     echo "Error: " . $sql . "<br>" . $link->error;
                 }
 
+                // Send Welcome email
+                // REMINDER!!! THIS WILL WORK ONLY IF SMTP IS CONFIGURED PROPERLY
+                // the message
+                $msg = "Welcome to our portal!";
+                // use wordwrap() if lines are longer than 70 characters
+                $msg = wordwrap($msg,70);
+                // send email
+                mail($email,"New Registration",$msg);
+
                 // Redirect to login page
                 header("location: login.php");
             } else{

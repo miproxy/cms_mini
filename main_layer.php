@@ -15,7 +15,7 @@
         if ($is_admin) {
           ?>
           <li class="nav-item active">
-            <a class="nav-link" href="/cms_mini">Members <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/cms_mini/pages/members">Members <span class="sr-only">(current)</span></a>
           </li>
           <?php
         }
@@ -37,7 +37,7 @@
           </li>
           <?php
         } else {
-          echo '<li class="nav-item active"><a class="nav-link" href="/cms_mini/pages/login">Login <span class="sr-only">(current)</span></a></li>';
+          echo '<li class="nav-item active"><a class="nav-link" href="/cms_mini/pages/login">Login / Register <span class="sr-only">(current)</span></a></li>';
         }
       ?>
     </ul>

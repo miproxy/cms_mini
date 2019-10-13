@@ -14,7 +14,7 @@ new database (with any chosen name), all needed tables and inserting demo data.
 
  - Admin account is accessible with following credentials:
        username: admin
-       password: demo123
+       password: admin123
  - User accounts are accessible with following credentials:
        username: user{name_of_user}
        password: 123456
